@@ -3,7 +3,7 @@ import { TAGS } from '@/types/tags';
 
 import css from './SidebarNotes.module.css';
 
-const SidebarNotes = () => {
+const SidebarNotes = async () => {
   return (
     <ul className="css.menuList">
       <li className={css.menuItem}>
