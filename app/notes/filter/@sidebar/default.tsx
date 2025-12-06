@@ -1,23 +1,25 @@
 import Link from 'next/link';
-import { TAGS } from '@/types/tags';
+import { getCategories } from '@/lib/api';
 
 import css from './SidebarNotes.module.css';
 
 const SidebarNotes = async () => {
+  const categories = await getCategories();
+
   return (
-    <ul className="css.menuList">
+    <ul className={css.menuList}>
       <li className={css.menuItem}>
-        <a href={`/notes/filter/all`} className={css.menuLink}>
+        <Link href={`/notes/filter/all`} className={css.menuLink}>
           All notes
-        </a>
+        </Link>
       </li>
-      {TAGS.map(tag => (
-        <li className={css.menuItem} key={tag}>
+      {categories.map(category => (
+        <li className={css.menuItem} key={category.id}>
           <Link
-            href={`/app/notes/filter/${tag}`}
+            href={`/notes/filter/${category.id}`}
             className={css.menuLink}
           >
-            {tag}
+            {category.name}
           </Link>
         </li>
       ))}
