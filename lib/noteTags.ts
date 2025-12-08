@@ -5,6 +5,5 @@ export const NOTE_TAGS: NoteTag[] = [
   'Personal',
   'Shopping',
   'Meeting',
-  'Todo',
-  'Work'
+  'Todo'
 ];
