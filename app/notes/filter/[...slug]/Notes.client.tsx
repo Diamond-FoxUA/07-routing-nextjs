@@ -7,14 +7,18 @@ import toast, { Toaster } from 'react-hot-toast';
 import css from './Notes.module.css';
 import { fetchNotes } from '@/lib/api';
 
-import NoteList from '../../components/NoteList/NoteList';
-import Pagination from '../../components/Pagination/Pagination';
-import Modal from '../../components/Modal/Modal';
-import NoteForm from '../../components/NoteForm/NoteForm';
-import SearchBox from '../../components/SearchBox/SearchBox';
-import Loader from '../../components/Loader/Loader';
+import NoteList from '@/components/NoteList/NoteList';
+import Pagination from '@/components/Pagination/Pagination';
+import Modal from '@/components/Modal/Modal';
+import NoteForm from '@/components/NoteForm/NoteForm';
+import SearchBox from '@/components/SearchBox/SearchBox';
+import Loader from '@/components/Loader/Loader';
 
-export default function NotesClient() {
+type Props = {
+  tag: string | null;
+}
+
+export default function NotesClient({ tag }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [query, setQuery] = useState('');
@@ -34,8 +38,8 @@ export default function NotesClient() {
   const closeModal = () => setIsModalOpen(false);
 
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['notes', debouncedQuery, currentPage],
-    queryFn: () => fetchNotes({ query: debouncedQuery, page: currentPage }),
+    queryKey: ['notes', tag, debouncedQuery, currentPage],
+    queryFn: () => fetchNotes({ query: debouncedQuery, page: currentPage, tag, }),
     placeholderData: keepPreviousData,
   });
 
