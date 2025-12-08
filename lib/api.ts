@@ -9,6 +9,7 @@ export interface NoteHttpResponse {
 export interface FetchNotesProps {
   query: string;
   page: number;
+  tag?: string | null;
 }
 
 const api = axios.create({
@@ -18,12 +19,13 @@ const api = axios.create({
   },
 });
 
-export async function fetchNotes({ query, page }: FetchNotesProps): Promise<NoteHttpResponse> {
-  const response = await api.get<NoteHttpResponse>('/notes', {
+export async function fetchNotes({ query, page = 1, tag }: FetchNotesProps): Promise<NoteHttpResponse> {
+  const response = await api.get<NoteHttpResponse>('/notes/filter', {
     params: {
       search: query,
       page,
-      perPage: 12
+      perPage: 12,
+      ...(tag ? { tag } : {})
     }
   });
   
@@ -44,16 +46,3 @@ export async function deleteNote(id: string): Promise<Note> {
   const response = await api.delete<Note>(`/notes/${id}`);
   return response.data;
 }
-
-export type Category = {
-  id: string;
-  name: string;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export const getCategories = async () => {
-  const response = await api.get<Category[]>('/categories');
-  return response.data;
-} 
