@@ -20,7 +20,7 @@ const api = axios.create({
 });
 
 export async function fetchNotes({ query, page = 1, tag }: FetchNotesProps): Promise<NoteHttpResponse> {
-  const response = await api.get<NoteHttpResponse>('/notes/filter', {
+  const response = await api.get<NoteHttpResponse>('/notes', {
     params: {
       search: query,
       page,
