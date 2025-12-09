@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import Modal from "@/components/Modal/Modal"
 import NoteDetailsClient from "@/app/notes/[id]/NoteDetails.client"
 
-const NotePreviewModalClient = () => {
+const NotePreviewClient = () => {
   const router = useRouter();
 
   const handleClose = () => {
@@ -18,4 +18,4 @@ const NotePreviewModalClient = () => {
   );
 };
 
-export default NotePreviewModalClient;
+export default NotePreviewClient;

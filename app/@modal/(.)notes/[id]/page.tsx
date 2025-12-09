@@ -1,5 +1,5 @@
-import NotePreviewModalClient from '../NotePreviewModalClient';
+import NotePreviewClient from '../NotePreview.сlient';
 
 export default function NotePreviewModalPage() {
-  return <NotePreviewModalClient />;
+  return <NotePreviewClient />;
 };
