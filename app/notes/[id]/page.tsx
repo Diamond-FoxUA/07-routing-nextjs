@@ -11,7 +11,7 @@ export default async function NoteDetails({ params }: { params: Promise<{ id: st
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['notes', id],
+    queryKey: ['note', id],
     queryFn: () => fetchNoteById(id)
   })
 
