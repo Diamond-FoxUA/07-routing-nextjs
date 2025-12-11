@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import css from './Home.module.css';
 
-const notFound = () => {
+const NotFound = () => {
   return (
     <div>
       <h1 className={css.title}>404 - Page not found</h1>
@@ -13,4 +13,4 @@ const notFound = () => {
   );
 };
 
-export default notFound;
+export default NotFound;
